@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login authentication</title>
+        <link rel="stylesheet" href="oasis_task4.css">
+    </head>
+    <body>
+        <div class="main">
+            <div class="main_register">
+            <form id="register-form">
+                <h1 style="padding-left: 25%;">Register</h1><br>
+                <label>Firstname:</label>
+                <input type="text" placeholder="firstname" id="reg-first"><br><br>
+                <label>Lastname:</label>
+                <input type="text" placeholder="lastname" id="reg-last"><br><br>
+                <label>Email id:</label>
+                <input type="email" placeholder="email id" id="reg-email"><br><br>
+                <label>Password:</label>
+                <input type="password" placeholder="password" id="reg-psw"><br><br>
+                <button type="submit" onclick="register()">Register</button>
+            </form>
+            </div>
+            <div class="main_login">
+            <form id="login-form">
+                <h1 style="padding-left: 30%;">Login</h1><br>
+                <label style="font-size: 20px;">Email id:</label>
+                <br>
+                <input type="email" placeholder="email id" id="log-email"><br><br>
+                <label style="font-size: 20px;">Password:</label>
+                <br>
+                <input type="password" placeholder="password" id="log-psw"><br><br><br>
+                <button type="submit" onclick="login()">Login</button>
+               
+            </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+
+            
+           const loginform=document.getElementById('login-form');
+           const registerform=document.getElementById('register-form');
+           const users=[];
+           loginform.addEventListener('submit',event => {
+            event.preventDefault();
+            const username=document.getElementById('log-email').value;
+            const password=document.getElementById('log-psw').value;
+            const user=users.find(user=>user.username===username);
+            if(user&&user.password===password){
+                alert("Login Successfull");
+            }
+            else{
+                alert("Login Unsuccessfull");
+            }
+           });
+           registerform.addEventListener('submit',event=>{
+            event.preventDefault();
+            const firstname=document.getElementById('reg-first').value;
+            const lastname=document.getElementById('reg-last').value;
+            const username=document.getElementById('reg-email').value;
+            const password=document.getElementById('reg-psw').value;
+            const value=users.find(user=>user.username===username);
+            if(username===''||password===''||firstname===''||lastname===''){
+                alert("Enter your details")
+            }
+            if(value)
+            {
+                alert("Already exist");
+            }
+            if(username!=''||password!=''||firstname!=''||lastname!='')
+            {
+                users.push({username,password});
+                alert(" Registration successfull");
+            }
+           });
+        });
+            
+        </script>
+    </body>
+</html> 
